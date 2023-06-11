@@ -1,27 +1,19 @@
 import React, { useState } from "react";
 
-const Tabs = ({tabss}) => {
-    const [activeTab, setActiveTab] = useState(0);
-
-    const tabClick = (index) => {
-        setActiveTab(index);
-    }
+const Tabs = (props) => {
+    const {tabs} = props;
+    const [activeTab, setActiveTab] = useState(tabs[0].content);
 
     return (
         <div>
-            <ul className="tabs">{
-                tabss.map((tab, index) => (
-                    <li key={index} className={`tab-item ${index === activeTab ? "active" : ""}`}
-                        onClick={() => tabClick(index)}>{tab} 
-                        {/* {tab.title} */}
-                    </li>
-                ))}
-            </ul>
-            <div className="tab-containt">
-                <p>This is the content of {tabss[activeTab]}</p>
-            </div>
+           <ul> 
+        {tabs.map((item, index)=>{
+        return <li key={index} onClick{()=> {setActiveTab(item.content)}}> {item.title}</li>
+    })}
+</ul>
+<p>{content}</p>
         </div>
-    )
+    );
 }
 
 export default Tabs;
